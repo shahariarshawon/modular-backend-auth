@@ -1,12 +1,17 @@
-import express, { type Request, type Response } from "express";
+import express from "express";
+import router from "./app/routes/routes.js";
+import notFound from "./app/middleware/notFound.js";
 
 const app = express();
-const port = process.env.PORT || 5000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Server kaj korteche tmi tension koriona");
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Server is running");
 });
 
-app.listen(port, () => {
-  console.log("Server is running");
-});
+app.use("/api/v1", router);
+
+app.use(notFound);
+
+export default app;
