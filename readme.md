@@ -1,9 +1,221 @@
-# database table design for products, sellers table
+# Database table design for a multivendor projects
 <img width="2362" height="2101" alt="DarazSellerPoint (1)" src="https://github.com/user-attachments/assets/e316f214-de15-46a2-ace6-8af88e04f149" />
 
 
 # Database Interview Questions & Answers
+##task of may 15
 
+## 1. Difference between DELETE, TRUNCATE and DROP?
+
+**Ans:**
+
+- **DELETE:** remove selected rows, can be used with `WHERE`, it is comparatively slower.
+- **TRUNCATE:** remove all the rows, can't be used with `WHERE`, comparatively faster.
+- **DROP:** removes the entire table, delete structure and data, it causes permanent table removal.
+
+---
+
+## 2. What is a Primary Key?
+
+**Ans:**
+
+A primary key is a column that uniquely identifies each row in a table.
+
+- it can't be null
+- can't be duplicate
+- only one primary key per table
+
+### Example
+
+```sql
+id SERIAL PRIMARY KEY
+```
+
+---
+
+## 3. Difference between PRIMARY KEY and UNIQUE KEY?
+
+**Ans:**
+
+### Primary Key
+
+- can't be null
+- only one per table
+- unique and not null
+
+### Unique Key
+
+- can contain null
+- multiple allowed
+- only unique
+
+---
+
+## 4. What is a Foreign Key?
+
+**Ans:**
+
+A foreign key is a column that referenced primary key from another table. It is used to create relationships between 2 or more tables.
+
+---
+
+## 5. What is a JOIN in SQL?
+
+**Ans:**
+
+JOIN combines data from multiple tables based on related columns.
+
+There are 4 joins:
+
+- LEFT JOIN
+- RIGHT JOIN
+- INNER JOIN
+- FULL JOIN
+
+### LEFT JOIN
+
+return all from left and matching from right
+
+### RIGHT JOIN
+
+return all from right and matching from left
+
+### INNER JOIN
+
+only matching from right and left
+
+### FULL JOIN
+
+return all from both tables
+
+---
+
+## 6. What is Normalization?
+
+**Ans:**
+
+Normalization is the process of organizing database tables to reduce redundancy and improve consistency.
+
+### 1NF
+
+Each column must contain atomic values.
+
+### 2NF
+
+Must be in 1NF and remove partial dependency.
+
+### 3NF
+
+Must be in 2NF and remove transitive dependency.
+
+---
+
+## 7. What is Indexing?
+
+**Ans:**
+
+Index is a data structure that improves search speed because it makes queries faster.
+
+- without index DB searches all rows
+- with index DB directly target the row
+
+---
+
+## 8. Difference between WHERE and HAVING
+
+**Ans:**
+
+### WHERE
+
+- filter rows
+- use before `GROUP BY`
+
+### Example
+
+```sql
+SELECT * FROM employees WHERE salary > 50000;
+```
+
+### HAVING
+
+- filter grouped data
+- use after `GROUP BY`
+
+### Example
+
+```sql
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 2;
+```
+
+---
+
+## 9. What is a Transaction in SQL?
+
+**Ans:**
+
+A transaction is a sequence of operations executed as one unit.
+
+It means consistency. If it happens then happens fully, either not.
+
+### COMMIT
+
+saves the changes
+
+### ROLLBACK
+
+undo changes
+
+### Example
+
+```sql
+BEGIN;
+
+UPDATE employees
+SET salary = 50000
+WHERE id = 1;
+
+ROLLBACK;
+```
+
+---
+
+## 10. Query to find second highest salary?
+
+**Ans:**
+
+To find the second highest salary we can follow 2 methods.
+
+### Method 1
+
+```sql
+SELECT MAX(salary)
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);
+```
+
+This method finds the maximum salary below the highest salary.
+
+---
+
+### Method 2
+
+```sql
+SELECT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+```
+
+This method sorts salary descending and skips the first highest salary.
+
+---
+
+
+
+## task of may 14
 ## 1. What is the difference between Primary Key and Foreign Key?
 
 **Answer:**  
