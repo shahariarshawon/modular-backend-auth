@@ -1,5 +1,6 @@
 # database table design for products, sellers table
-<img width="1777" height="790" alt="DarazSellerPoint" src="https://github.com/user-attachments/assets/c16b2ee5-9c8f-4753-89bc-f82e7b9ffd6c" />
+<img width="2362" height="2101" alt="DarazSellerPoint (1)" src="https://github.com/user-attachments/assets/e316f214-de15-46a2-ace6-8af88e04f149" />
+
 
 # Database Interview Questions & Answers
 
